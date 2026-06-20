@@ -700,11 +700,9 @@ const observer = new IntersectionObserver(entries=>{
 },{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-const GaneshaData = 'PASTE_YOUR_GANESHA_BASE64_HERE';
-const CoupleData = 'PASTE_YOUR_COUPLE_BASE64_HERE';
-document.getElementById('ganeshaImg').src = 'data:image/webp;base64,' + GaneshaData;
-document.getElementById('envGaneshaImg').src = 'data:image/webp;base64,' + GaneshaData;
-document.getElementById('coupleImg').src = 'data:image/webp;base64,' + CoupleData;
+document.getElementById('ganeshaImg').src = "lord_ganesha.webp";
+document.getElementById('envGaneshaImg').src = "lord_ganesha.webp";
+document.getElementById('coupleImg').src = "couple_converted.webp";
 
 const musicBtn = document.getElementById('musicBtn');
 musicBtn.addEventListener('click', ()=>musicBtn.classList.toggle('playing'));
