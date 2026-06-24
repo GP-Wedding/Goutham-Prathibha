@@ -184,7 +184,17 @@ section{position:relative;padding:62px 24px}
 @keyframes portraitFloat{0%,100%{transform:translateY(0) rotateX(0)}50%{transform:translateY(-6px) rotateX(2deg)}}
 .portrait-card::before{content:"";position:absolute;inset:8px;border:1px dashed rgba(138,96,32,.5);border-radius:155px 155px 8px 8px}
 .portrait-kalash{position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:36px;height:46px;z-index:5;filter:drop-shadow(0 3px 5px rgba(122,31,42,.3))}
-.portrait-img{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:100%;object-fit:contain;object-position:bottom center;filter:drop-shadow(0 8px 14px rgba(0,0,0,.15))}
+.portrait-img{
+  position:absolute;
+  left:50%;
+  bottom:0;
+  transform:translateX(-50%);
+  height:90%;
+  width:auto;
+  object-fit:contain;
+  object-position:center bottom;
+  filter:drop-shadow(0 8px 14px rgba(0,0,0,.15));
+}
 .blossom{position:absolute;width:30px;height:30px;color:var(--maroon-soft);opacity:.9}
 .blossom.tl{top:20px;left:18px;transform:rotate(-30deg)}
 .blossom.tr{top:20px;right:18px;transform:rotate(30deg)}
