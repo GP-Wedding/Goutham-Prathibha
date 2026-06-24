@@ -665,10 +665,20 @@ footer::after{content:"❋";position:absolute;left:50%;top:-9px;transform:transl
 </footer>
 
 <div class="credits">
-  <div class="credits-line center-text">
-    <span class="lang-en">Designed with devotion and tradition</span>
-    <span class="lang-te">భక్తి మరియు సంప్రదాయంతో రూపుదిద్దుకున్నది</span>
-    <span class="designer">G &amp; P</span>
+  <div class="credits-line">
+
+    <span class="lang-en">
+      Designed with devotion and tradition
+    </span>
+
+    <span class="lang-te">
+      భక్తి మరియు సంప్రదాయంతో రూపుదిద్దుకున్నది
+    </span>
+
+    <span class="designer">
+      G &amp; P
+    </span>
+
   </div>
 </div>
     </div>
@@ -764,25 +774,20 @@ const musicBtn = document.getElementById("musicBtn");
 
 music.volume = 0.8;
 
-
-// envelope open ayyaka music start
-document.getElementById("envelope").addEventListener("click", () => {
-  music.play();
-  musicBtn.classList.add("playing");
+document.getElementById("envelope").addEventListener("click",()=>{
+    music.play();
+    musicBtn.classList.add("playing");
 });
 
 
-// button play / pause
-musicBtn.addEventListener("click", () => {
-
-  if (music.paused) {
-    music.play();
-    musicBtn.classList.add("playing");
-  } else {
-    music.pause();
-    musicBtn.classList.remove("playing");
-  }
-
+musicBtn.addEventListener("click",()=>{
+    if(music.paused){
+        music.play();
+        musicBtn.classList.add("playing");
+    }else{
+        music.pause();
+        musicBtn.classList.remove("playing");
+    }
 });
 </script>
 </body>
