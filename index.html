@@ -666,8 +666,8 @@ footer::after{content:"❋";position:absolute;left:50%;top:-9px;transform:transl
 
 <button class="music-btn" id="musicBtn" aria-label="Toggle music">♪</button>
 
-<audio id="weddingMusic" loop>
-  <source src="Seetha Kalyanam - SenSongsMp3.Co.mp3" type="audio/mp3">
+<audio id="weddingMusic" loop autoplay>
+  <source src="weddingsong.mp4" type="video/mp4">
 </audio>
 
 <script>
@@ -752,6 +752,7 @@ const music = document.getElementById("weddingMusic");
 const musicBtn = document.getElementById("musicBtn");
 
 music.volume = 0.8;
+music.load();
 
 // envelope open ayye time lo start try
 window.addEventListener("load", () => {
@@ -760,15 +761,11 @@ window.addEventListener("load", () => {
   });
 });
 
-
-// nee envelope open click kuda user interaction kabatti music start avvali
 document.getElementById("envelope").addEventListener("click", () => {
   music.play();
   musicBtn.classList.add("playing");
 });
 
-
-// button pause/play
 musicBtn.addEventListener("click", () => {
 
   if(music.paused){
@@ -779,7 +776,6 @@ musicBtn.addEventListener("click", () => {
     music.pause();
     musicBtn.classList.remove("playing");
   }
-
 
 
 });
