@@ -748,7 +748,31 @@ document.getElementById('envGaneshaImg').src = "lord_ganesha.webp";
 document.getElementById('coupleImg').src = "AhaConvert_gp.webp";
 
 const musicBtn = document.getElementById('musicBtn');
-musicBtn.addEventListener('click', ()=>musicBtn.classList.toggle('playing'));
+const weddingMusic = document.getElementById('weddingMusic');
+
+let musicPlaying = false;
+
+musicBtn.addEventListener('click', ()=>{
+
+  if(!musicPlaying){
+
+    weddingMusic.play();
+    musicBtn.classList.add('playing');
+    musicBtn.innerHTML = "❚❚";
+
+    musicPlaying = true;
+
+  }else{
+
+    weddingMusic.pause();
+    musicBtn.classList.remove('playing');
+    musicBtn.innerHTML = "♪";
+
+    musicPlaying = false;
+
+  }
+
+});
 </script>
 </body>
 </html>
