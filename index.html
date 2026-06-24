@@ -665,7 +665,7 @@ footer::after{content:"❋";position:absolute;left:50%;top:-9px;transform:transl
 </div>
 
 <button class="music-btn" id="musicBtn" aria-label="Toggle music">♪</button>
-  <audio id="weddingMusic" loop>
+ <audio id="weddingMusic" loop autoplay muted>
   <source src="Seetha Kalyanam - SenSongsMp3.Co.mp3" type="audio/mp3">
 </audio>
 
@@ -747,30 +747,38 @@ document.getElementById('ganeshaImg').src = "lord_ganesha.webp";
 document.getElementById('envGaneshaImg').src = "lord_ganesha.webp";
 document.getElementById('coupleImg').src = "AhaConvert_gp.webp";
 
-const musicBtn = document.getElementById('musicBtn');
-const weddingMusic = document.getElementById('weddingMusic');
+const music = document.getElementById("weddingMusic");
+const musicBtn = document.getElementById("musicBtn");
 
-let musicPlaying = false;
+music.volume = 0.7;
 
-musicBtn.addEventListener('click', ()=>{
+function startMusic(){
+  music.muted = false;
+  music.play();
+  musicBtn.classList.add("playing");
 
-  if(!musicPlaying){
+  document.removeEventListener("click", startMusic);
+  document.removeEventListener("touchstart", startMusic);
+  document.removeEventListener("scroll", startMusic);
+}
 
-    weddingMusic.play();
-    musicBtn.classList.add('playing');
-    musicBtn.innerHTML = "❚❚";
+window.addEventListener("load", () => {
+  music.play();
+});
 
-    musicPlaying = true;
+document.addEventListener("click", startMusic);
+document.addEventListener("touchstart", startMusic);
+document.addEventListener("scroll", startMusic);
 
+musicBtn.addEventListener("click", ()=>{
+  if(music.paused){
+    music.play();
+    musicBtn.classList.add("playing");
   }else{
-
-    weddingMusic.pause();
-    musicBtn.classList.remove('playing');
-    musicBtn.innerHTML = "♪";
-
-    musicPlaying = false;
-
+    music.pause();
+    musicBtn.classList.remove("playing");
   }
+
 
 });
 </script>
