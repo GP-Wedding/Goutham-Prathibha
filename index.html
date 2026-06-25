@@ -2139,42 +2139,6 @@ document.getElementById('envGaneshaImg').src = "data:image/webp;base64," + GANES
     else { audio.pause(); btn.classList.remove('playing'); icon.innerHTML='<path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>'; }
   });
 })();
-  // Expose globally so envelope tap can trigger
-  window._startMusic = function(){
-    if(!apiReady || !player){
-      pendingPlay = true;
-      btn.classList.add('playing');
-      return;
-    }
-    if(!playing) doPlay();
-  };
-
-  function doPlay(){
-    try{ player.playVideo(); }catch(_){}
-  }
-
-  function doPause(){
-    try{ player.pauseVideo(); }catch(_){
-      playing = false;
-      btn.classList.remove('playing');
-      icon.innerHTML = '<path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>';
-    }
-  }
-
-  btn.addEventListener('click', () => {
-    if(!apiReady || !player){
-      // Queue play; spinner-ish UI hint
-      pendingPlay = true;
-      btn.classList.add('playing');
-      return;
-    }
-    if(!playing){
-      doPlay();
-    } else {
-      doPause();
-    }
-  });
-})();
 </script>
 
 </body>
