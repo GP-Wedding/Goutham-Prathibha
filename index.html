@@ -2124,77 +2124,21 @@ document.getElementById('envGaneshaImg').src = "data:image/webp;base64," + GANES
   window.addEventListener('scroll', upd, {passive:true}); upd();
 })();
 
-/* ==== Music — YouTube embed (loops the wedding song) ==== */
+/* ==== Music — local MP3 ==== */
 (function(){
   const btn = document.getElementById('musicBtn');
   const icon = document.getElementById('musicIcon');
-  const VIDEO_ID = 'nA8E41JUQM0';
+  const audio = new Audio('weddingsong-gp.mp3');
+  audio.loop = true;
+  audio.volume = 0.55;
 
-  // Hidden iframe container for YouTube IFrame API
-  const ytWrap = document.createElement('div');
-  ytWrap.style.cssText = 'position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;pointer-events:none;opacity:0;';
-  ytWrap.innerHTML = '<div id="ytPlayer"></div>';
-  document.body.appendChild(ytWrap);
+  window._startMusic = function(){ audio.play().catch(()=>{}); btn.classList.add('playing'); icon.innerHTML='<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>'; };
 
-  let player = null;
-  let playing = false;
-  let apiReady = false;
-  let pendingPlay = false;
-
-  // Load YouTube IFrame API
-  const tag = document.createElement('script');
-  tag.src = 'https://www.youtube.com/iframe_api';
-  document.head.appendChild(tag);
-
-  window.onYouTubeIframeAPIReady = function(){
-    apiReady = true;
-    player = new YT.Player('ytPlayer', {
-      videoId: VIDEO_ID,
-      playerVars: {
-        autoplay: 0,
-        controls: 0,
-        loop: 1,
-        playlist: VIDEO_ID, // required for loop to work on single videos
-        modestbranding: 1,
-        playsinline: 1,
-        rel: 0,
-        fs: 0,
-        disablekb: 1
-      },
-      events: {
-        onReady: (e) => {
-          e.target.setVolume(55);
-          if(pendingPlay){
-            pendingPlay = false;
-            doPlay();
-          }
-        },
-        onStateChange: (e) => {
-          // If video ends and loop didn't catch it, restart
-          if(e.data === YT.PlayerState.ENDED){
-            try{ player.seekTo(0); player.playVideo(); }catch(_){}
-          }
-          if(e.data === YT.PlayerState.PLAYING){
-            playing = true;
-            btn.classList.add('playing');
-            icon.innerHTML = '<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>';
-          } else if(e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED){
-            playing = false;
-            btn.classList.remove('playing');
-            icon.innerHTML = '<path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>';
-          }
-        },
-        onError: (e) => {
-          console.warn('YouTube player error', e.data);
-          // Restore play icon if errored
-          playing = false;
-          btn.classList.remove('playing');
-          icon.innerHTML = '<path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>';
-        }
-      }
-    });
-  };
-
+  btn.addEventListener('click', () => {
+    if(audio.paused){ audio.play(); btn.classList.add('playing'); icon.innerHTML='<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>'; }
+    else { audio.pause(); btn.classList.remove('playing'); icon.innerHTML='<path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>'; }
+  });
+})();
   // Expose globally so envelope tap can trigger
   window._startMusic = function(){
     if(!apiReady || !player){
